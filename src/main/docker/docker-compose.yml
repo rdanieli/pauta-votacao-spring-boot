@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  web:
+    build:
+      context: ../../../.
+      dockerfile: ./src/main/docker/Dockerfile
+    restart: always
+    ports:
+    - 8080:8080
+    depends_on:
+    - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+    - POSTGRES_PASSWORD=Postgres2019!
+    - POSTGRES_DB=votacao
+    ports:
+    - 5432:5432
+    volumes:
+    - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
