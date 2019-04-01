@@ -70,7 +70,7 @@ public class PautaResource {
 
     @PostMapping("/{idPauta}/iniciar-sessao-votacao")
     public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") String idPauta,
-                                               SessaoRequest abrirSessaoRequest) {
+                                               @RequestBody SessaoRequest abrirSessaoRequest) {
         logger.info("Pauta {} abertura de sessão.", idPauta);
 
         pautaService.iniciarSessaoVotacao(idPauta, abrirSessaoRequest != null ? abrirSessaoRequest.getDataFechamento() : null);

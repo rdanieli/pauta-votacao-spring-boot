@@ -7,7 +7,6 @@ COPY build.gradle ./
 COPY gradle gradle
 COPY gradlew ./
 
-RUN ls -la
 RUN chmod 777 gradlew
 
 RUN ./gradlew clean build
