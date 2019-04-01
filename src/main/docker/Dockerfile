@@ -1,3 +1,15 @@
 FROM openjdk:8u171-alpine3.7
-COPY build/libs/*.jar app.jar
-CMD java ${JAVA_OPTS} -jar app.jar
+
+WORKDIR /usr/src/app
+
+COPY . ./
+COPY build.gradle ./
+COPY gradle gradle
+COPY gradlew ./
+
+RUN ls -la
+RUN chmod 777 gradlew
+
+RUN ./gradlew clean build
+
+CMD java ${JAVA_OPTS} -jar build/libs/*.jar
